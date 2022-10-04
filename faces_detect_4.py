@@ -15,6 +15,7 @@ recognizer.read("./recognizers/face-trainner.yml")
 
 # Set parameters for take photo
 seconds_between_shots = 5 # Between unknow shot
+seconds_line_shots = 10 # Between send line image
 timelapse_img_dir = 'imgsrc/captures/'
 iImgNo = 0
 if not os.path.exists(timelapse_img_dir):
@@ -37,6 +38,8 @@ def linenotify(message, imgfile):
   session_post = session.post(url, headers=headers, files=img, data =data)
   print(session_post.text) 
 
+now = datetime.now()
+stampTime = datetime.now()
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -50,7 +53,7 @@ while(True):
 
     	# recognize? deep learned model predict keras tensorflow pytorch scikit learn
     	id_, conf = recognizer.predict(roi_gray)
-    	
+    	now = datetime.now()
     	if conf>=4 and conf <= 85:
     		#print(5: #id_)
     		#print(labels[id_])
@@ -70,9 +73,14 @@ while(True):
     		iImgNo += 1
     		cv2.imwrite(filename, frame)
     		message = 'Found person unknow' #Set your message here!
-    		linenotify(message, filename)			
+			
     		time.sleep(seconds_between_shots)
-    		
+    		diff = (stampTime - now).total_seconds()
+    		if (diff > seconds_line_shots):
+    			linenotify(message, filename)
+    			stampTime = datetime.now()
+    			print("Send line %(n)s " % {'n': stampTime})
+				
     	#img_item = "7.png"
     	#cv2.imwrite(img_item, roi_color)
 
