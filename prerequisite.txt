@@ -1,0 +1,14 @@
+# Package and require
+
+#which will install opencv based on your current python
+python -m pip install opencv-python
+
+#Prerequisites
+pip install matplotlib
+pip install numpy
+#Final step
+pip install opencv-python
+
+#with lin notify
+pip install requests 
+

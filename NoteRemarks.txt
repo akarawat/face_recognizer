@@ -1,0 +1,27 @@
+https://towardsdatascience.com/face-detection-with-haar-cascade-727f68dafd08
+https://github.com/opencv/opencv/tree/master
+----------------------------------------------------------------------------
+Init Git First time
+- Create Repositories on git-hub
+- Copy SSH ex. git@github.com:akarawat/FaceRecong-OpenCv-Haarcascade.git
+=> GO to VS Code
+- mkdir or open folder
+mkdir my_project
+cd my_project
+> Start below this step
+touch .gitignore
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin git@github.com:akarawat/FaceRecong-OpenCv-Haarcascade.git
+> copy-create all files&folder to this path
+> if fork transection must to select which alert-popup
+git push origin master
+---
+For simple, we can add repositories from Github.com Web 
+and Clone project into folder. 
+ex. #git clone xxxxx.git
+......
+*** What a pickle? >> https://arnondora.in.th/how-to-pickle-and-unpickle-python/
+
+

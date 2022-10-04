@@ -1,6 +1,5 @@
 import numpy as np
 import cv2
-import time
 import pickle
 
 face_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_frontalface_alt2.xml')
@@ -10,8 +9,6 @@ smile_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_smile.xml')
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("./recognizers/face-trainner.yml")
-seconds_between_shots = .50
-timelapse_img_dir = 'imgsrc/captures/'
 
 labels = {"person_name": 1}
 with open("pickles/face-labels.pickle", 'rb') as f:
@@ -20,7 +17,6 @@ with open("pickles/face-labels.pickle", 'rb') as f:
 
 cap = cv2.VideoCapture(0)
 
-i = 0
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -41,11 +37,6 @@ while(True):
     		color = (255, 255, 255)
     		stroke = 2
     		cv2.putText(frame, name, (x,y), font, 1, color, stroke, cv2.LINE_AA)
-
-    		filename        = f"{timelapse_img_dir}/{i}.jpg"
-    		i               += 1
-    		cv2.imwrite(filename, frame)
-    		time.sleep(seconds_between_shots)
     	else:
     		cv2.putText(frame, "Unknow", (x,y), font, 1, color, stroke, cv2.LINE_AA)
 		
