@@ -68,7 +68,7 @@ while(True):
     		iImgNo += 1
     		cv2.imwrite(filename, frame)
     		message = 'Found person unknow' #Set your message here!
-    		linenotify(message, filename)			
+    		# linenotify(message, filename)			
     		time.sleep(seconds_between_shots)
     		
     	#img_item = "7.png"
