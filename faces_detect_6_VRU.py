@@ -17,7 +17,7 @@ recognizer.read("./recognizers/face-trainner.yml")
 # Set parameters for take photo
 seconds_between_shots = 5 # Tak a shot send line beetween unknow person
 timelapse_img_dir = 'imgsrc/captures/'
-iImgNo = 0
+iImgTake = 0
 if not os.path.exists(timelapse_img_dir):
     os.mkdir(timelapse_img_dir)
 
@@ -31,7 +31,6 @@ cap = cv2.VideoCapture(0)
 def linenotify(message, imgfile):
   url = 'https://notify-api.line.me/api/notify'
   token = 'lczHoxFWTwFC3vjJgNEUy1nPRGadvKmQAuLuvxRWQTr' # Line Notify Token SCS
-#   token = 'AzJEkWTUfzlrShxvqhclkJOOJasds8nYpe6rKBhTf1c' # Line Notify Token OSom
   img = {'imageFile': open(imgfile,'rb')} #Local picture File
   data = {'message': message}
   headers = {'Authorization':'Bearer ' + token}
@@ -60,12 +59,11 @@ while(True):
     		color = (0, 128, 0)
     		name = labels[id_]
     		cv2.putText(frame, name, (x,y), font, 1, color, stroke, cv2.LINE_AA)
-    		filename        = f"{timelapse_img_dir}/{iImgNo}.jpg"
-    		iImgNo               += 1
+    		filename        = f"{timelapse_img_dir}/{iImgTake}.jpg"
     		cv2.imwrite(filename, frame)
     		# time.sleep(seconds_between_shots)
-    		linenotify(name, filename)			
-    		time.sleep(seconds_between_shots)
+    		#linenotify(name, filename)			
+    		#time.sleep(seconds_between_shots)
 
     	else:
     		color = (255, 0, 0)
