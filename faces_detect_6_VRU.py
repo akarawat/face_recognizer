@@ -1,3 +1,4 @@
+# Include with VGE106 VRU. //
 from ctypes.wintypes import RGB
 import os
 import numpy as np
@@ -8,8 +9,6 @@ from datetime import datetime
 import requests
 
 face_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_frontalface_alt2.xml')
-# eye_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_eye.xml')
-# smile_cascade = cv2.CascadeClassifier('cascades/data/haarcascade_smile.xml')
 
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read("./recognizers/face-trainner.yml")
